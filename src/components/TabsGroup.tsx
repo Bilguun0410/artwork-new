@@ -6,6 +6,7 @@ import { ChevronDown, Search } from 'lucide-react'
 import { Input } from './ui/input'
 import { Label } from './ui/label'
 import { SelectScrollable } from './custom/SelectScrollable'
+import EditWindow from './EditWindow'
 
 type Props = {}
 
@@ -15,9 +16,8 @@ const TabsGroup = (props: Props) => {
         {
             id:0,
             component: () => {
-                return(
-                    <Button className='rounded-3xl py-6 px-14 bg-[#0C21C1] hover:bg-[#0c21c1]/75'>+ {pathname.includes('/creators')  ? 'Зохиогч' : 'Бүтээл'} нэмэх</Button>
-                )
+                return <EditWindow>
+                <Button className='rounded-[10px] py-6 px-14 bg-[#0C21C1] hover:bg-[#0c21c1]/75'>+ {pathname.includes('/creators')  ? 'Зохиогч' : 'Бүтээл'} нэмэх</Button></EditWindow>
             }
         },
         {

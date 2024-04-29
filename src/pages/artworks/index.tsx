@@ -14,12 +14,10 @@ type ConnectionStatus = {
     arts?: any[];
   };
   
-  export const getServerSideProps: GetServerSideProps<
-    ConnectionStatus
-  > = async () => {
+  export const getServerSideProps = async () => {
     try {
       const client = await clientPromise;
-      const db = client.db('artwork');
+      const db = client.db('artworks');
       const data = await db
         .collection("arts")
         .find({})
