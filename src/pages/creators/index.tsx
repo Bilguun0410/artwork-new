@@ -1,6 +1,5 @@
 import CreatorsPage from '@/src/components/containers/Creators'
 import clientPromise from '@/lib/mongodb'
-import { GetServerSideProps } from 'next'
 import React from 'react'
 
 const page = ({creators}) => {
@@ -8,18 +7,11 @@ const page = ({creators}) => {
 }
 
 export default page
-
-type ConnectionStatus = {
-    isConnected: boolean;
-    creators?: any[];
-  };
   
-  export const getServerSideProps: GetServerSideProps<
-    ConnectionStatus
-  > = async () => {
+  export const getServerSideProps = async () => {
     try {
       const client = await clientPromise;
-      const db = client.db('artwork');
+      const db = client.db('Artwork');
       const data = await db
         .collection("creators")
         .find({})

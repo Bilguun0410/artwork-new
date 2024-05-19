@@ -17,7 +17,7 @@ type ConnectionStatus = {
   export const getServerSideProps = async () => {
     try {
       const client = await clientPromise;
-      const db = client.db('artworks');
+      const db = client.db('Artwork');
       const data = await db
         .collection("arts")
         .find({})

@@ -8,18 +8,11 @@ const page = ({arts}) => {
 }
 
 export default page
-
-type ConnectionStatus = {
-    isConnected: boolean;
-    arts?: any[];
-  };
   
-  export const getServerSideProps: GetServerSideProps<
-    ConnectionStatus
-  > = async () => {
+  export const getServerSideProps = async () => {
     try {
       const client = await clientPromise;
-      const db = client.db('artworks');
+      const db = client.db('Artwork');
       const data = await db
         .collection("arts")
         .find({})
