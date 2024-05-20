@@ -7,8 +7,10 @@ import { Input } from './ui/input'
 import { Label } from './ui/label'
 import { SelectScrollable } from './custom/SelectScrollable'
 import EditWindow from './EditWindow'
+import { IGenre } from '@/lib/models/genres'
 
-type Props = {}
+type Props = {
+}
 
 const TabsGroup = (props: Props) => {
     const pathname = usePathname();

@@ -1,36 +1,25 @@
 import ArtworksPage from '@/src/components/containers/Artworks'
-import clientPromise from '@/lib/mongodb'
-import { GetServerSideProps } from 'next'
+import axios from 'axios';
 import React from 'react'
 
-const page = ({arts}) => {
+const page = ({arts} : any) => {
     return <ArtworksPage data={arts} />
 }
 
 export default page
 
-type ConnectionStatus = {
-    isConnected: boolean;
-    arts?: any[];
-  };
-  
-  export const getServerSideProps = async () => {
-    try {
-      const client = await clientPromise;
-      const db = client.db('Artwork');
-      const data = await db
-        .collection("arts")
-        .find({})
-        .sort({ metacritic: -1 })
-        .limit(10)
-        .toArray();
-      return {
-        props: { isConnected: true, arts:  JSON.parse(JSON.stringify(data)) },
-      };
-    } catch (e) {
-      console.error(e);
-      return {
-        props: { isConnected: false, arts: [] },
-      };
-    }
-  };
+export const getServerSideProps = async () => {
+  try {
+    const res = await axios.get('http://localhost:4100/api/artworks');
+    const arts = res.data;
+
+    return {
+      props: { arts },
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      props: { arts: [] },
+    };
+  }
+};

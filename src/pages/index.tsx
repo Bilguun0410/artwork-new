@@ -1,7 +1,6 @@
 import HomePage from '@/src/components/containers/home'
-import clientPromise from '@/lib/mongodb'
-import { GetServerSideProps } from 'next'
 import React from 'react'
+import axios from 'axios'
 
 const page = ({arts}) => {
     return <HomePage data={arts} />
@@ -11,21 +10,16 @@ export default page
   
   export const getServerSideProps = async () => {
     try {
-      const client = await clientPromise;
-      const db = client.db('Artwork');
-      const data = await db
-        .collection("arts")
-        .find({})
-        .sort({ metacritic: -1 })
-        .limit(10)
-        .toArray();
+      const res = await axios.get('http://localhost:4100/api/artworks');
+      const arts = res.data;
+  
       return {
-        props: { isConnected: true, arts:  JSON.parse(JSON.stringify(data)) },
+        props: { arts },
       };
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      console.error(error);
       return {
-        props: { isConnected: false, arts: [] },
+        props: { arts: [] },
       };
     }
   };
