@@ -10,6 +10,8 @@ import Image from 'next/image';
 
 type ContextProps = {
   currentUser?: any;
+  genre?: any;
+  handleSelect?: (value) => void;
 }
 
 const AppContext = createContext({} as ContextProps);
@@ -23,6 +25,12 @@ type Props = {
 
 const AppProvider = ({ children }: Props) => {
   const {push} = useRouter();
+  const [ genre, setGenre ] = useState<string | undefined>();
+
+  const handleSelect = (value) => {
+    setGenre(value)
+  }
+
   // const { data, loading } = useQuery(gql(currentUserQuery), {
   //   fetchPolicy: 'network-only',
   //   client: getErxesApolloClient()
@@ -42,7 +50,7 @@ const AppProvider = ({ children }: Props) => {
   // };
 
   return (
-      <AppContext.Provider value={{}}>{children}</AppContext.Provider>
+      <AppContext.Provider value={{genre, handleSelect}}>{children}</AppContext.Provider>
   )
 };
 

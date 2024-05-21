@@ -32,7 +32,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "lib/models/user.js"  ],
   "exclude": [
     "node_modules"
   ]

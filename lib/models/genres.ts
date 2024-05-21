@@ -3,7 +3,8 @@ import { ObjectId as typeId } from "mongodb";
 
 export interface IGenre {
     _id: ObjectId,
-    name : string
+    name : string,
+    fields?: any[];
 }
 
 const GenreSchema = new Schema({
@@ -14,6 +15,10 @@ const GenreSchema = new Schema({
     },
     name: {
         type: String,
+        required: true
+    },
+    fields: {
+        type: Array,
         required: true
     }
 })

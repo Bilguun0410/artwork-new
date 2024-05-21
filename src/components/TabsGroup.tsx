@@ -8,6 +8,7 @@ import { Label } from './ui/label'
 import { SelectScrollable } from './custom/SelectScrollable'
 import EditWindow from './EditWindow'
 import { IGenre } from '@/lib/models/genres'
+import EditWindowArtist from './EditWindowArtist'
 
 type Props = {
 }
@@ -18,8 +19,18 @@ const TabsGroup = (props: Props) => {
         {
             id:0,
             component: () => {
-                return <EditWindow>
-                <Button className='rounded-[10px] py-6 px-14 bg-[#0C21C1] hover:bg-[#0c21c1]/75'>+ {pathname.includes('/creators')  ? 'Зохиогч' : 'Бүтээл'} нэмэх</Button></EditWindow>
+                if(pathname.includes('/creators') ){
+                    return(
+                        <EditWindowArtist method='post'>
+                            <Button className='rounded-[10px] py-6 px-14 bg-[#0C21C1] hover:bg-[#0c21c1]/75'>+ Зохиогч нэмэх</Button>
+                        </EditWindowArtist>
+                    )
+                }
+                return(
+                    <EditWindow method='post'>
+                        <Button className='rounded-[10px] py-6 px-14 bg-[#0C21C1] hover:bg-[#0c21c1]/75'>+ Бүтээл нэмэх</Button>
+                    </EditWindow>
+                ) 
             }
         },
         {

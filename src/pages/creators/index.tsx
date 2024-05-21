@@ -1,30 +1,25 @@
 import CreatorsPage from '@/src/components/containers/Creators'
-import clientPromise from '@/lib/mongodb'
 import React from 'react'
+import axios from 'axios'
 
-const page = ({creators}) => {
-    return <CreatorsPage data={creators} />
+const page = ({artists}) => {
+    return <CreatorsPage data={artists} />
 }
 
 export default page
   
   export const getServerSideProps = async () => {
     try {
-      const client = await clientPromise;
-      const db = client.db('Artwork');
-      const data = await db
-        .collection("creators")
-        .find({})
-        .sort({ metacritic: -1 })
-        .limit(10)
-        .toArray();
+      const res = await axios.get('http://localhost:4900/api/creators');
+      const artists = res.data;
+  
       return {
-        props: { isConnected: true, creators:  JSON.parse(JSON.stringify(data)) },
+        props: { artists },
       };
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      console.error(error);
       return {
-        props: { isConnected: false, creators: [] },
+        props: { artists: [] },
       };
     }
   };

@@ -7,10 +7,10 @@ const page = ({arts} : any) => {
 }
 
 export default page
-
+  
 export const getServerSideProps = async () => {
   try {
-    const res = await axios.get('http://localhost:4100/api/artworks');
+    const res = await axios.get('http://localhost:4900/api/artworks');
     const arts = res.data;
 
     return {
