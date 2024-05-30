@@ -201,7 +201,7 @@ const EditWindowArtist = ({ children, data, method }: { children: any, data?: an
                             <div className='flex gap-[22px] mt-[30px] justify-end'>
                                 <Button disabled={loading || addLoading} type='submit' className='w-[140px] bg-[#0C21C1] rounded-3xl'>{(loading || addLoading) && <Loader className='w-4 h-4 animate-spin' /> || 'Хадгалах'}</Button>
                                 <DialogClose>
-                                    <Button type='button' className='w-[140px] bg-[#0C21C1] rounded-3xl'>Буцах</Button>
+                                    <Button type='button' className='w-[140px] bg-slate-300 text-slate-800 hover:bg-[red]/40 hover:text-white rounded-3xl'>Буцах</Button>
                                 </DialogClose>
                             </div>
                         </div>

@@ -20,8 +20,6 @@ server.use(express.json());
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 
-const PORT = 4124;
-
 let db;
 
 // Middleware to check authentication
